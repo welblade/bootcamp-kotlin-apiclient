@@ -10,6 +10,10 @@ import com.github.welblade.apiclient.model.Product
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import androidx.recyclerview.widget.DividerItemDecoration
+
+
+
 
 class MainActivity : AppCompatActivity() {
     private val activityMainBinding: ActivityMainBinding by lazy {
@@ -22,11 +26,14 @@ class MainActivity : AppCompatActivity() {
     }
     private fun setupRecycleView(){
         activityMainBinding.rvProducts.layoutManager = LinearLayoutManager(this)
+        activityMainBinding.rvProducts.apply {
+            addItemDecoration(VerticalSpaceItemDecorator(10) )
+        }
         getData()
     }
     private fun getData(){
         val call: Call<List<Product>> =
-            MyRetrofit.instance?.getProductApi() as Call<List<Product>>
+            MyRetrofit.instance?.productApi()?.getProductApi() as Call<List<Product>>
         call.enqueue(
             object: Callback<List<Product>> {
                 override fun onResponse(

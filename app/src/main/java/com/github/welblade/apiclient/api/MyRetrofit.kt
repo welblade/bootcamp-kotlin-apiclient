@@ -7,7 +7,7 @@ class MyRetrofit {
     private val retrofit: Retrofit = Retrofit.Builder().baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create()).build()
 
-    fun getProductApi():ProductApi{
+    fun productApi(): ProductApi {
         return retrofit.create(ProductApi::class.java)
     }
 
